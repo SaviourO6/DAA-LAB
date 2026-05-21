@@ -1,1 +1,35 @@
-
+// .cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter array elements:\n";
+    for(int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    cout << "Enter key element: ";
+    cin >> key;
+    int count = 0;
+    bool found = false;
+    // Linear Search
+    for(int i = 0; i < n; i++)
+    {
+        count++;
+        if(arr[i] == key)
+        {
+            found = true;
+            break;
+        }
+    }
+    if(found)
+        cout << "Present\n";
+    else
+        cout << "Not Present\n";
+    cout << "Total comparisons = " << count;
+    return 0;
+}
