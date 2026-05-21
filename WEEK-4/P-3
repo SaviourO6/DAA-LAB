@@ -1,0 +1,27 @@
+// .cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int n, k;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements: ";
+    for(int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    cout << "Enter value of K: ";
+    cin >> k;
+    sort(arr, arr + n);
+    cout << "\nSorted Array: ";
+    for(int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << "\nKth Smallest Element = " << arr[k - 1];
+    cout << "\nKth Largest Element = " << arr[n - k];
+    return 0;
+}
