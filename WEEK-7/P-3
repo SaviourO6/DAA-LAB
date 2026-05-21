@@ -1,0 +1,66 @@
+// .cpp
+#include <iostream>
+#include <climits>
+using namespace std;
+#define INF 99999
+int shortestPath(int graph[][100], int u, int v, int k, int n)
+{
+    if(k == 0 && u == v)
+    {
+        return 0;
+    }
+    if(k == 1 && graph[u][v] != INF)
+    {
+        return graph[u][v];
+    }
+    if(k <= 0)
+    {
+        return INF;
+    }
+    int result = INF;
+    for(int i = 0; i < n; i++)
+    {
+        if(graph[u][i] != INF && u != i && v != i)
+        {
+            int recursiveAns = shortestPath(graph, i, v, k - 1, n);
+            if(recursiveAns != INF)
+            {
+                result = min(result, graph[u][i] + recursiveAns);
+            }
+        }
+    }
+    return result;
+}
+int main()
+{
+    int n;
+    cout << "Enter number of vertices: ";
+    cin >> n;
+    int graph[100][100];
+    cout << "Enter adjacency matrix:\n";
+    cout << "(Enter 99999 if no edge exists)\n";
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            cin >> graph[i][j];
+        }
+    }
+    int source, destination, k;
+    cout << "Enter source vertex: ";
+    cin >> source;
+    cout << "Enter destination vertex: ";
+    cin >> destination;
+    cout << "Enter exact number of edges: ";
+    cin >> k;
+    int ans = shortestPath(graph, source, destination, k, n);
+    if(ans == INF)
+    {
+        cout << "No such path exists";
+    }
+    else
+    {
+        cout << "Shortest path weight = " << ans;
+    }
+    return 0;
+}
