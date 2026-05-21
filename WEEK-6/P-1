@@ -1,0 +1,51 @@
+// .cpp
+# include <iostream>
+using namespace std;
+bool found = false;
+void DFS(int graph[][100], int visited[], int current, int destination, int n)
+{
+    visited[current] = 1;
+    if(current == destination)
+    {
+        found = true;
+        return;
+    }
+    for(int i = 0; i < n; i++)
+    {
+        if(graph[current][i] == 1 && visited[i] == 0)
+        {
+            DFS(graph, visited, i, destination, n);
+        }
+    }
+}
+int main()
+{
+    int n;
+    cout << "Enter number of vertices: ";
+    cin >> n;
+    int graph[100][100];
+    cout << "Enter adjacency matrix:\n";
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            cin >> graph[i][j];
+        }
+    }
+    int source, destination;
+    cout << "Enter source vertex: ";
+    cin >> source;
+    cout << "Enter destination vertex: ";
+    cin >> destination;
+    int visited[100] = {0};
+    DFS(graph, visited, source, destination, n);
+    if(found)
+    {
+        cout << "Path exists";
+    }
+    else
+    {
+        cout << "Path does not exist";
+    }
+    return 0;
+}
