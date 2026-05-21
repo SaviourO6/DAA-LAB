@@ -1,0 +1,33 @@
+// .cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cout << "Enter number of alphabets: ";
+    cin >> n;
+    char arr[n];
+    cout << "Enter alphabets: ";
+    for(int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    int freq[26] = {0};
+    for(int i = 0; i < n; i++)
+    {
+        freq[arr[i] - 'a']++;
+    }
+    int maxFreq = 0;
+    char result;
+    for(int i = 0; i < 26; i++)
+    {
+        if(freq[i] > maxFreq)
+        {
+            maxFreq = freq[i];
+            result = i + 'a';
+        }
+    }
+    cout << "Alphabet with maximum occurrences = " << result << endl;
+    cout << "Frequency = " << maxFreq;
+    return 0;
+}
