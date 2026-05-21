@@ -1,0 +1,46 @@
+// .cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter sorted array:\n";
+    for(int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    cout << "Enter key element: ";
+    cin >> key;
+    int step = 2;
+    int prev = 0;
+    int count = 0;
+    // Jump phase
+    while(prev < n && arr[prev] < key)
+    {
+        count++;
+        prev += step;
+    }
+    // Linear search phase
+    int start = prev - step;
+    if(start < 0)
+        start = 0;
+    bool found = false;
+    for(int i = start; i <= prev && i < n; i++)
+    {
+        count++;
+        if(arr[i] == key)
+        {
+            found = true;
+            break;
+        }
+    }
+    if(found)
+        cout << "Present\n";
+    else
+        cout << "Not Present\n";
+    cout << "Total comparisons = " << count;
+    return 0;
+}
